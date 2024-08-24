@@ -45,7 +45,7 @@ export default {
 					type: 'header',
 					text: {
 						type: 'plain_text',
-						test: title,
+						text: title,
 						emoji: true
 					}
 				},
