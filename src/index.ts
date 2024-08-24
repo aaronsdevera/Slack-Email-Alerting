@@ -43,7 +43,7 @@ export default {
 		let email_body = 'View content on gmail: <https://mail.google.com/mail/u/0/ | Open on web> <googlegmail:// | Open in app>';
 
 		if (usable_content.length >= 1) {
-			let email_body = usable_content[0];
+			let email_body = '```\n' + usable_content[0] + '\n```';
 		}
 
 		const title = 'New email received at ' + created_at_string
