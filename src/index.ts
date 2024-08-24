@@ -40,7 +40,7 @@ export default {
 
 		const usable_content = content_types.filter((element) => element.startsWith('text/plain') || element.startsWith('text/html'))
 
-		const msg = 'View content on gmail: <https://mail.google.com/mail/u/0/ | Open on web> <googlegmail:// | Open in app>;'
+		const msg = 'View content on gmail: <https://mail.google.com/mail/u/ | Open on web>;'
 		let email_body = msg;
 
 		if (usable_content.length >= 1) {
