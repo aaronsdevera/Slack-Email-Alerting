@@ -40,15 +40,14 @@ export default {
 
 		const usable_content = content_types.filter((element) => element.startsWith('text/plain') || element.startsWith('text/html'))
 
-		const msg = 'View content on gmail: <https://mail.google.com/mail/u/ | Open on web>;'
-		let email_body = msg;
+		let email_body = '';
 
 		if (usable_content.length >= 1) {
-			let email_body = msg + '\n--------------------------\n```\n' + usable_content[0] + '\n```';
+			let email_body = '\n--------------------------\n```\n' + usable_content[0] + '\n```';
 		}
 
 		const title = 'New email received at ' + created_at_string
-		const body = `*From:* ${from}\n*Subject:* ${subject}\n\n--------------------------\n${email_body}`;
+		const body = `*From:* ${from}\n*Subject:* ${subject}\n*View content on gmail:* <https://mail.google.com/mail/u/ | Click to open on web>${email_body}`;
 
 		const payload = {
 			blocks: [
