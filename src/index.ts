@@ -34,7 +34,7 @@ export default {
 
 		// BugFix: Replace "UTF-8" with "utf-8" to prevent letterparser from throwing an error for some messages.
 		const rawEmail = message.raw;
-		const email = await letterparser.parse(rawEmail.replace('UTF-8', 'utf-8'));
+		const email = (await new Response(message.raw).text()).replace(/utf-8/gi, 'utf-8');
 
 		const title = 'New email received at ' + created_at_string
 		const body = `*From:* ${from}\n*Subject:* ${subject}\n\n${email.text}`;
@@ -60,6 +60,7 @@ export default {
 
 		try {
 			const response = await sendToSlack(payload);
+			console.log(response.text())
 		} catch(e) {
 			console.log(e);
 		}
