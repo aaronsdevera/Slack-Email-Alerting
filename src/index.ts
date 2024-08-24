@@ -36,8 +36,19 @@ export default {
 		const rawEmail = message.raw;
 		const email = (await new Response(message.raw).text()).replace(/utf-8/gi, 'utf-8');
 
+		const content_types = email.split('Content-Type: ')
+
+		const usable_content = content_types.filter((element) => element.startsWith('text/plain') || element.startsWith('text/html'))
+
+		if (usable_content.length >= 1) {
+			const email_body = usable_content[0];
+		}
+		else {
+			const email_body = 'View content on gmail: <https://mail.google.com/mail/u/0/ | Open on web> <googlegmail:// | Open in app>';
+		}
+
 		const title = 'New email received at ' + created_at_string
-		const body = `*From:* ${from}\n*Subject:* ${subject}\n\n${email.text}`;
+		const body = `*From:* ${from}\n*Subject:* ${subject}\n\n--------------------------\n${email_body}`;
 
 		const payload = {
 			blocks: [
