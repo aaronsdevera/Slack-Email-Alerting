@@ -43,8 +43,11 @@ export default {
 			blocks: [
 				{
 					type: 'header',
-					text: title,
-					emoji: true
+					text: {
+						type: 'plain_text',
+						test: title,
+						emoji: true
+					}
 				},
 				{
 					type: 'section',
