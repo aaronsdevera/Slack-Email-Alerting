@@ -10,8 +10,8 @@ function getDateTimeString(unixEpoch: number): string {
 	return getDateTime(unixEpoch).toISOString();
 }
 
-function sendToSlack(data: Object): Promise<Object> {
-	return fetch(env.SLACK_WEBHOOK_URL, {
+function sendToSlack(data: Object, webhook_url: string): Promise<Object> {
+	return fetch(webhook_url, {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {
@@ -59,7 +59,7 @@ export default {
 		
 
 		try {
-			const response = await sendToSlack(payload);
+			const response = await sendToSlack(payload, env.SLACK_WEBHOOK_URL);
 			console.log(response.text())
 		} catch(e) {
 			console.log(e);
