@@ -60,7 +60,8 @@ export default {
 
 		try {
 			const response = await sendToSlack(payload, env.SLACK_WEBHOOK_URL);
-			console.log(response.text())
+			const responseText = await response.text();
+			console.log(responseText)
 		} catch(e) {
 			console.log(e);
 		}
