@@ -31,6 +31,7 @@ export default {
 		// Parse email
 		const { from, to } = message;
 		const subject = message.headers.get('subject') || '(no subject)';
+		const replyto = message.headers.get('reply-to') || null;
 
 		// BugFix: Replace "UTF-8" with "utf-8" to prevent letterparser from throwing an error for some messages.
 		const rawEmail = message.raw;
@@ -45,9 +46,9 @@ export default {
 		if (usable_content.length >= 1) {
 			let email_body = '\n--------------------------\n```\n' + usable_content[0] + '\n```';
 		}
-
+		let sender = replyto || from;
 		const title = 'New email received at ' + created_at_string
-		const body = `*From:* ${from}\n*Subject:* ${subject}\n*View content on gmail:* <https://mail.google.com/mail/u/ | Click to open on web>${email_body}`;
+		const body = `*From:* ${sender}\n*Subject:* ${subject}\n*View content on gmail:* <https://mail.google.com/mail/u/ | Click to open on web>${email_body}`;
 
 		const payload = {
 			blocks: [
