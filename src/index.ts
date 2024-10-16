@@ -46,7 +46,10 @@ export default {
 		if (usable_content.length >= 1) {
 			let email_body = '\n--------------------------\n```\n' + usable_content[0] + '\n```';
 		}
-		let sender = replyto || from;
+		let sender = from;
+		if (replyto) {
+			sender = replyto;
+		}
 		const title = 'New email received at ' + created_at_string
 		const body = `*From:* ${sender}\n*Subject:* ${subject}\n*View content on gmail:* <https://mail.google.com/mail/u/ | Click to open on web>${email_body}`;
 
